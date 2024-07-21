@@ -49,8 +49,3 @@
 
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=hardik19102003&" alt="hardik19102003" /></p>
 
-![Jokes Card](https://readme-jokes.vercel.app/api)
-
-![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=hardik19102003&theme=github)
-
-![GitHub metrics](https://metrics.lecoq.io/hardik19102003)
