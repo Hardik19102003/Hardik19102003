@@ -49,3 +49,8 @@
 
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=hardik19102003&" alt="hardik19102003" /></p>
 
+# My LeetCode Profile
+
+Here are my latest LeetCode stats:
+
+[LeetCode Stats](leetcode_stats.md)
