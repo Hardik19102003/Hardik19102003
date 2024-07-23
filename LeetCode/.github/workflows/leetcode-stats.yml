@@ -1,0 +1,61 @@
+name: Update LeetCode Stats
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: |
+          python -m pip install requests
+
+      - name: Fetch LeetCode stats and update README
+        env:
+          LEETCODE_USERNAME: ${{ secrets.LEETCODE_USERNAME }}
+        run: |
+          echo "Fetching LeetCode stats for $LEETCODE_USERNAME"
+          python <<EOF
+          import requests
+
+          def get_leetcode_stats(username):
+              url = f"https://leetcode-stats-api.herokuapp.com/{username}"
+              response = requests.get(url)
+              if response.status_code == 200:
+                  return response.json()
+              else:
+                  return None
+
+          username = "$LEETCODE_USERNAME"
+          stats = get_leetcode_stats(username)
+          if stats:
+              with open("leetcode_stats.md", "w") as f:
+                  f.write(f"# LeetCode Stats for {username}\n\n")
+                  f.write(f"**Total Solved:** {stats['totalSolved']}\n\n")
+                  f.write(f"**Easy:** {stats['easySolved']}\n\n")
+                  f.write(f"**Medium:** {stats['mediumSolved']}\n\n")
+                  f.write(f"**Hard:** {stats['hardSolved']}\n\n")
+          else:
+              print("Failed to fetch LeetCode stats")
+          EOF
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add leetcode_stats.md
+          git commit -m 'Update LeetCode stats'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
