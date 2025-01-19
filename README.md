@@ -10,9 +10,9 @@
 
 <div align="center">
  
- 🔭 I’m currently working on **a project building**
+ 🔭 I’m currently intrested in **CNCF Projects**
  
- 🌱 I’m currently learning **Terraform, AWS**
+ 🌱 I’m currently learning **Go**
 
 💬 Ask me about **Docker, Kubernetes, CI/CD... or anything [here](https://github.com/Hardik19102003/Hardik19102003/issues)**
 
